@@ -28,43 +28,15 @@ public class Main {
         printArrayElements(numbers);
 
         // Selection Sort and Present new order
-//        selectionSort(numbers);
-//        System.out.println("\n\nAfter Selection Sort: ");
-//        printArrayElements(numbers);
+        selectionSort(numbers);
+        System.out.println("\n\nAfter Selection Sort: ");
+        printArrayElements(numbers);
     }
 
     // Bubble sort (descending order)
     private static void bubbleSort(int[] arr)
     {
-        // Ascending Order Bubble Sort
-        /*for(int lastSortedIndex = arr.length - 1; lastSortedIndex > 0; lastSortedIndex--)
-        {
-            for(int i = 0; i < lastSortedIndex; i++)
-            {
-                if(arr[i] > arr[i + 1])
-                {
-                    int temp = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = temp;
-                }
-            }
-        }*/
-
-        // Descending Order Bubble Sort 1
-        /*for(int i = 0; i < arr.length; i++)
-        {
-            for(int j = 1; j < arr.length - i; j++)
-            {
-                if(arr[j-1] < arr[j])
-                {
-                    int temp = arr[j - 1];
-                    arr[j-1] = arr[j];
-                    arr[j] = temp;
-                }
-            }
-        }*/
-
-        // Descending Order Bubble Sort 2
+       // Descending Order Bubble Sort
         for(int lastSortedIndex = arr.length - 1; lastSortedIndex > 0; lastSortedIndex--)
         {
             for(int i = 0; i < lastSortedIndex; i++)
@@ -77,48 +49,12 @@ public class Main {
                 }
             }
         }
-
-        // Descending Order Bubble Sort 3
-        // Compare the elements of an index to the index before it
-        /*for(int i = 0; i < arr.length; i++)
-        {
-            for(int sortedIndex = arr.length - 9; sortedIndex < arr.length - i; sortedIndex++)
-            {
-                // IF the element of index - 1 is less than the current index, the elements are switched
-                if(arr[sortedIndex - 1] < arr[sortedIndex])
-                {
-                    int temp = arr[sortedIndex - 1];
-                    arr[sortedIndex - 1] = arr[sortedIndex];
-                    arr[sortedIndex] = temp;
-                }
-            }
-        }*/
-
-
     }
 
     // Selection sort (descending order & smallest element at the end)
     private static void selectionSort(int[] arr)
     {
-        // Ascending Order Selection Sort
-        /*for(int lastSortedIndex = arr.length - 1; lastSortedIndex > 0; lastSortedIndex--)
-        {
-            int largestIndex = 0;
-            for(int i = 1; i <= lastSortedIndex; i++)
-            {
-                if (arr[i] > arr[largestIndex])
-                {
-                    largestIndex = i;
-                }
-            }
-
-            int temp = arr[lastSortedIndex];
-            arr[lastSortedIndex] = arr[largestIndex];
-            arr[largestIndex] = temp;
-        }*/
-
-        // ======== TO BE FIXED? ===========
-        // Descending Order Selection Sort 1
+        // Descending Order Selection Sort
         for(int lastSortedIndex = arr.length - 1; lastSortedIndex > 0; lastSortedIndex--)
         {
             int smallestIndex = 0;
@@ -133,22 +69,6 @@ public class Main {
             arr[lastSortedIndex] = arr[smallestIndex];
             arr[smallestIndex] = temp;
         }
-
-        // Descending Order Selection Sort 2
-        /*for(int i = 0; i < arr.length - 1; i++)
-        {
-            int smallestIndex = i;
-            for(int j = i + 1; j < arr.length; j++)
-            {
-                if(arr[j] > arr[smallestIndex])
-                {
-                    smallestIndex = j;
-                }
-            }
-            int temp = arr[smallestIndex];
-            arr[smallestIndex] = arr[i];
-            arr[i] = temp;
-        }*/
     }
 
     private static void printArrayElements(int[] arr)

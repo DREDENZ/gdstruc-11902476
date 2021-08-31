@@ -3,7 +3,7 @@ package com.dwightterencetablizo;
 public class PlayerNode {
     private Player player;
     private PlayerNode nextPlayer;
-    private PlayerNode previousPlayer;
+    private PlayerNode previousPlayer; // Bonus Activity
 
     public PlayerNode(Player player) {
         this.player = player;

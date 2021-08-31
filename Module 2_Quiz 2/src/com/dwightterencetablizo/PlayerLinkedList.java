@@ -21,37 +21,43 @@ public class PlayerLinkedList {
             current = current.getNextPlayer();
         }
         System.out.println("null");
-        System.out.println("Elements in Linked List: " + size);
+        System.out.println("\nElements in Linked List: " + size);
     }
 
-    public void removeFirstElement(){
-        PlayerNode firstElement = head;
+    public Player removeFirstElement(){
+        Player temp = head.getPlayer();
+        head = head.getNextPlayer();
         size -=1;
-        System.out.println("Removed Element: " + firstElement.getPlayer());
-        firstElement = null;
+        return temp;
     }
 
-    public void contains(Player target){
+    public boolean contains(Player target){
         PlayerNode player = head;
         while(player != null){
            if(target == player.getPlayer())
            {
-               System.out.println("True");
+               return true;
            }
            player = player.getNextPlayer();
        }
-        System.out.println("False");
+        return false;
     }
 
     public void indexOf(Player target){
         PlayerNode node = head;
+        int index = 0;
         while(node != null){
             if(target == node.getPlayer())
             {
-                System.out.println(node);
+                System.out.println("\nPlayer is in index: " +  index);
+            }
+            else if(node.getNextPlayer() == null)
+            {
+                System.out.println("\nPlayer is unavailable");
             }
             node = node.getNextPlayer();
+            index += 1;
         }
-        System.out.println("False");
+
     }
 }
