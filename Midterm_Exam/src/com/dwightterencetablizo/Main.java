@@ -5,6 +5,25 @@ import java.util.Random;
 
 public class Main {
 
+    public static void takeCard(int num, CardStack stackTake, CardStack stackRemove, int cardTakeNum, int cardRemoveNum) {
+        if (num > cardTakeNum)
+        {
+            System.out.println("No cards to discard");
+        }
+        else
+        {
+            for (int i = 0; i < num; i++)
+            {
+                stackTake.push(stackRemove.pop()); // discards cards from hand
+
+                cardRemoveNum--;
+                cardTakeNum++;
+            }
+            System.out.println("Amount Removed: " + num); // print amount removed
+            stackTake.printStack(); // print discard stack
+        }
+    }
+
     public static void main(String[] args) {
 	// write your code here
         // initialize linked list stacks
@@ -49,6 +68,7 @@ public class Main {
         mainStack.push(new Card(30, "thirty"));
 
         // Commands
+        // Reference for random number generator: https://coderanch.com/t/650127/java/create-simple-random-number-generator
         Random rand = new Random();
         int command = rand.nextInt(3) + 1; // generates a random number from 1 - 3
         int num = rand.nextInt(5) + 1; // generates a random number from 1-5
@@ -58,63 +78,19 @@ public class Main {
         // DRAW x cards (x = random number from 1-5)
         if (command == 1)
         {
-
-            for (int i = 0; i < num; i++)
-            {
-                playerStack.push(mainStack.peek()); // takes card from main stack
-                mainStack.pop(); // removes cards taken from main stack
-
-                mainStackCards--;
-                cardsOnHand++;
-            }
-            System.out.println("Amount Removed: " + num); // print amount removed
-            playerStack.printStack(); // print player stack
+            takeCard(num, playerStack, mainStack, mainStackCards, cardsOnHand);
         }
 
         // DISCARD x cards (x = random number from 1-5)
         else if (command == 2)
         {
-            if (num > cardsOnHand)
-            {
-                System.out.println("No cards to discard");
-            }
-            else
-            {
-                for (int i = 0; i < num; i++)
-                {
-                    discardStack.push(playerStack.peek()); // discards cards from hand
-                    playerStack.pop(); // removes cards taken from hand
-
-                    mainStackCards--;
-                    cardsOnHand++;
-                }
-                System.out.println("Amount Removed: " + num); // print amount removed
-                discardStack.printStack(); // print discard stack
-            }
+            takeCard(num, discardStack, playerStack, cardsOnHand, discardedCards);
         }
 
         // GET x cards from DISCARD pile (x = random number from 1-5)
         else
         {
-            if (num > cardsOnHand)
-            {
-                System.out.println("No cards to discard");
-            }
-            else
-            {
-                for (int i = 0; i < num; i++)
-                {
-                    playerStack.push(discardStack.peek()); // takes card from discard pile
-                    discardStack.pop(); // removes cards taken from discard pile
-
-                    cardsOnHand++;
-                    discardedCards--;
-                }
-                System.out.println("Amount Removed: " + num); // print amount removed
-                playerStack.printStack(); // print player stack
-            }
+            takeCard(num, playerStack, discardStack, discardedCards, cardsOnHand);
         }
-
-
     }
 }
