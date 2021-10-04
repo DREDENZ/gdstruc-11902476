@@ -6,9 +6,9 @@ import java.util.Random;
 public class Main {
 
     public static void takeCard(int num, CardStack stackTake, CardStack stackRemove, int cardTakeNum, int cardRemoveNum) {
-        if (num > cardTakeNum)
+        if (num > cardRemoveNum)
         {
-            System.out.println("No cards to discard");
+            System.out.println("No cards to discard \n");
         }
         else
         {
@@ -21,7 +21,13 @@ public class Main {
             }
             System.out.println("Amount Removed: " + num); // print amount removed
             stackTake.printStack(); // print discard stack
+            System.out.println("\n");
         }
+    }
+
+    public static void displayCardStats(int mainStackCards, int discardedCards) {
+        System.out.println("Number of Cards Left in Stack: " + mainStackCards);
+        System.out.println("Number of Cards Discarded: " + discardedCards);
     }
 
     public static void main(String[] args) {
@@ -69,28 +75,36 @@ public class Main {
 
         // Commands
         // Reference for random number generator: https://coderanch.com/t/650127/java/create-simple-random-number-generator
-        Random rand = new Random();
-        int command = rand.nextInt(3) + 1; // generates a random number from 1 - 3
-        int num = rand.nextInt(5) + 1; // generates a random number from 1-5
+       while (!mainStack.isEmpty())
+       {
+           Random rand = new Random();
+           int command = rand.nextInt(3) + 1; // generates a random number from 1 - 3
+           int num = rand.nextInt(5) + 1; // generates a random number from 1-5
 
-        System.out.println("Action: " + command);
+           System.out.println("Action: " + command);
 
-        // DRAW x cards (x = random number from 1-5)
-        if (command == 1)
-        {
-            takeCard(num, playerStack, mainStack, mainStackCards, cardsOnHand);
-        }
+           // DRAW x cards from main stack (x = random number from 1-5)
+           if (command == 1)
+           {
+               takeCard(num, playerStack, mainStack, cardsOnHand, mainStackCards);
+               displayCardStats(mainStackCards, discardedCards);
+           }
 
-        // DISCARD x cards (x = random number from 1-5)
-        else if (command == 2)
-        {
-            takeCard(num, discardStack, playerStack, cardsOnHand, discardedCards);
-        }
+           // DISCARD x cards from cards on hand (x = random number from 1-5)
+           else if (command == 2)
+           {
+               takeCard(num, discardStack, playerStack, discardedCards, cardsOnHand);
+               displayCardStats(mainStackCards, discardedCards);
+           }
 
-        // GET x cards from DISCARD pile (x = random number from 1-5)
-        else
-        {
-            takeCard(num, playerStack, discardStack, discardedCards, cardsOnHand);
-        }
+           // GET x cards from DISCARD pile (x = random number from 1-5)
+           else
+           {
+               takeCard(num, playerStack, discardStack, cardsOnHand, discardedCards);
+               displayCardStats(mainStackCards, discardedCards);
+           }
+       }
+
+        System.out.println("\n All Cards have been moved!");
     }
 }
