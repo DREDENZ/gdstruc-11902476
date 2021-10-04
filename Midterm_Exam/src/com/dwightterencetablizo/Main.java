@@ -6,12 +6,20 @@ import java.util.Random;
 public class Main {
 
     public static void takeCard(int num, CardStack stackTake, CardStack stackRemove, int cardTakeNum, int cardRemoveNum) {
-        if (num > cardRemoveNum)
+        System.out.println("Amount to be Removed: " + num); // print amount removed
+
+        if (num > cardRemoveNum && cardRemoveNum < 6)
+        {
+            System.out.println("modified amount \n");
+            num = cardRemoveNum;
+        }
+        else if (num > cardRemoveNum)
         {
             System.out.println("No cards to discard \n");
         }
         else
         {
+            System.out.println("removing in progress"); // print amount removed
             for (int i = 0; i < num; i++)
             {
                 stackTake.push(stackRemove.pop()); // discards cards from hand
@@ -27,7 +35,7 @@ public class Main {
 
     public static void displayCardStats(int mainStackCards, int discardedCards) {
         System.out.println("Number of Cards Left in Stack: " + mainStackCards);
-        System.out.println("Number of Cards Discarded: " + discardedCards);
+        System.out.println("Number of Cards Discarded: " + discardedCards + "\n");
     }
 
     public static void main(String[] args) {
