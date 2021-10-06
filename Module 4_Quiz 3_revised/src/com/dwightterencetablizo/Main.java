@@ -41,7 +41,7 @@ public class Main {
         {
             System.out.println("\nQueuing Players...");
             startQueue(loadPlayer, forQueue, doneQueue);
-            if (doneQueue.size() > 4 && turnNum < 10)
+            if (doneQueue.size() >= 5 && turnNum < 10)
             {
                 System.out.println("\nGame #" + turnNum + " Starting!");
                 turnNum++;
