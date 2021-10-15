@@ -1,6 +1,7 @@
 package com.dwightterencetablizo;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
@@ -19,6 +20,12 @@ public class Main {
         doneQueue.printQueue();
     }
 
+    public static void pressEnter(){
+        System.out.println("\nPress \"ENTER\" to continue...");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+    }
+
     public static void main(String[] args) {
 	// write your code here
         int turnNum = 0;
@@ -33,24 +40,25 @@ public class Main {
             forQueue.add(new Player(i, "Player #" + i, i));
         }
 
-        // generate number fromm 1-7 to be queued
-        Random rand = new Random();
-        int loadPlayer = rand.nextInt(7) + 1;
-
         while (turnNum < 11)
         {
+            // generate number fromm 1-7 to be queued
+            Random rand = new Random();
+            int loadPlayer = rand.nextInt(7) + 1;
+
             System.out.println("\nQueuing Players...");
             startQueue(loadPlayer, forQueue, doneQueue);
-            if (doneQueue.size() >= 5 && turnNum < 10)
+            if (loadPlayer >= 5 || doneQueue.size() >= 5 && turnNum < 10)
             {
-                System.out.println("\nGame #" + turnNum + " Starting!");
+                System.out.println("\n========= Game #" + (turnNum + 1) + " Starting! =========");
                 turnNum++;
             }
             else if (turnNum == 10)
             {
-                System.out.println("\nLast Game Starting! \n");
+                System.out.println("\n========= Last Game Starting! =========\n");
                 turnNum++;
             }
+            pressEnter();
         }
     }
 }

@@ -21,6 +21,6 @@ public class Main {
 
         // Activity 3 - contains() & indexOf()
         System.out.println("\nThe player is in the list: " + playerLinkedList.contains(asuna));
-        playerLinkedList.indexOf(james);
+        playerLinkedList.indexOf(asuna);
     }
 }
